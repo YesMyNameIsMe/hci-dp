@@ -1,16 +1,38 @@
-# React + Vite
+# Prune
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+A mobile app for keeping track of monthly spending and cutting subscriptions you no longer use.
 
-Currently, two official plugins are available:
+## Getting Started
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+### Dependencies
 
-## React Compiler
+- [Node.js](https://nodejs.org) 20 or newer (includes npm)
+- A modern browser (Chrome, Edge, Safari or Firefox)
+- Windows 10+, macOS or Linux
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Libraries, installed automatically by `npm install`:
 
-## Expanding the Oxlint configuration
+- [React 19](https://react.dev) + [Vite](https://vite.dev): UI framework and dev server/bundler
+- [Tailwind CSS v4](https://tailwindcss.com): styling
+- [shadcn/ui](https://ui.shadcn.com) on [Radix UI](https://www.radix-ui.com): prebuilt, accessible components, copied into `src/components/ui/`
+- [Lucide](https://lucide.dev): icons
+- [Inter](https://rsms.me/inter/) and [Instrument Serif](https://fonts.google.com/specimen/Instrument+Serif) via Fontsource: fonts, bundled with the app
+- [Oxlint](https://oxc.rs): linting
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and Oxlint's TypeScript related rules in your project.
+### Installing
+
+```bash
+git clone https://github.com/YesMyNameIsMe/hci-dp.git
+cd hci-dp
+npm install
+```
+
+No files need to be modified.
+
+## Authors
+
+- Garrett Hockersmith
+- Tommy Nguyen
+- Chase Gibson
+- Ahad Cheema
+- Jorge Agueros
