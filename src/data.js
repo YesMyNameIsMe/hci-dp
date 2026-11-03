@@ -100,3 +100,25 @@ export function getMonthSpending(now = new Date()) {
 
   return { purchases: thisMonth, total, lastMonthTotal, changePct }
 }
+
+
+const dayFormat = new Intl.DateTimeFormat('en-US', { weekday: 'short', month: 'short', day: 'numeric' })
+
+function dayLabel(date, now) {
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate())
+  const daysAgo = Math.round((today - date) / 86_400_000)
+  if (daysAgo === 0) return 'Today'
+  if (daysAgo === 1) return 'Yesterday'
+  return dayFormat.format(date)
+}
+
+// show newest purchases first, group by days
+export function groupByDay(purchases, now = new Date()) {
+  const days = []
+  for (const p of purchases) {
+    const last = days.at(-1)
+    if (last && last.date.getTime() === p.date.getTime()) last.purchases.push(p)
+    else days.push({ date: p.date, label: dayLabel(p.date, now), purchases: [p] })
+  }
+  return days.map((day) => ({ ...day, total: sum(day.purchases) }))
+}

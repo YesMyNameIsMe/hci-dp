@@ -1,4 +1,4 @@
-import { ChevronRight } from 'lucide-react'
+import { ArrowRightLeft, ChartPie, ChevronRight, Receipt } from 'lucide-react'
 import { Card } from '@/components/ui/card'
 import { getMonthSpending } from '@/data'
 import { formatMoney } from '@/lib/format'
@@ -6,16 +6,19 @@ import { formatMoney } from '@/lib/format'
 const LINKS = [
   {
     href: '#/subscriptions',
+    icon: ArrowRightLeft,
     title: 'Manage Subscriptions',
     description: 'Review charges, cancel, or set reminders',
   },
   {
     href: '#/purchases',
+    icon: Receipt,
     title: 'All Purchases',
     description: 'See everything you’ve spent, day by day',
   },
   {
     href: '#/budget',
+    icon: ChartPie,
     title: 'Budget & Alerts',
     description: 'Set spending limits and get alerts',
   },
@@ -28,9 +31,8 @@ function changeText(changePct) {
   return `Your spending is ${direction} ${Math.abs(changePct)}% from this time last month.`
 }
 
-
 const linkClass =
-  'flex items-center gap-3 px-4 py-3.5 outline-none transition-colors hover:bg-muted/40 active:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset'
+  'flex items-center gap-3 px-4 py-3 outline-none transition-colors hover:bg-muted/40 active:bg-muted focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-inset'
 
 export default function Home() {
   const { total, changePct } = getMonthSpending()
@@ -53,11 +55,14 @@ export default function Home() {
       <p className="mt-4 px-4 text-center text-muted-foreground">{changeText(changePct)}</p>
 
       <nav aria-label="Shortcuts" className="mt-auto pt-8">
-        <Card className="gap-0 divide-y py-0 ring-foreground/70">
-          {LINKS.map(({ href, title, description }) => (
+        <Card className="gap-0 divide-y py-0">
+          {LINKS.map(({ href, icon: Icon, title, description }) => (
             <a key={href} href={href} className={linkClass}>
-              <div className="flex-1">
-                <span className="block text-base font-semibold">{title}</span>
+              <span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-secondary text-primary">
+                <Icon className="size-5" aria-hidden="true" />
+              </span>
+              <div className="min-w-0 flex-1">
+                <span className="block text-base font-medium">{title}</span>
                 <span className="block text-sm text-muted-foreground">{description}</span>
               </div>
               <ChevronRight className="size-5 shrink-0 text-muted-foreground" aria-hidden="true" />

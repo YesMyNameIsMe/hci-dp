@@ -6,7 +6,7 @@ const formatTime = (date) =>
     .toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })
     .replace(/\s?[AP]M$/i, '')
 
-// Iphone status bar (top right of iphone)
+// Iphone status bar (top of the phone)
 export default function StatusBar() {
   const [now, setNow] = useState(() => new Date())
 
