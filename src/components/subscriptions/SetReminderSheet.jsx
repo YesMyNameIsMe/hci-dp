@@ -3,12 +3,12 @@ import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import {
   Drawer,
-  DrawerContent,
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer'
+import PhoneDrawerContent from './PhoneDrawerContent'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { navigate } from '@/lib/navigate'
 import { REMINDER_OPTIONS, formatDate, reminderDate, setReminder } from '@/lib/subscriptions'
@@ -36,7 +36,7 @@ export default function SetReminderSheet({ sub, open, onOpenChange }) {
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent className={SHEET_CLASS}>
+      <PhoneDrawerContent className={SHEET_CLASS}>
         <DrawerHeader className="items-center gap-3 px-4 pt-6 text-center md:text-center">
           <DrawerTitle className="text-2xl leading-8 font-semibold">Set Reminder</DrawerTitle>
           <DrawerDescription className="text-[15px]">
@@ -92,7 +92,7 @@ export default function SetReminderSheet({ sub, open, onOpenChange }) {
             Set reminder
           </Button>
         </DrawerFooter>
-      </DrawerContent>
+      </PhoneDrawerContent>
     </Drawer>
   )
 }

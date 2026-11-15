@@ -2,19 +2,18 @@ import { useEffect, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Drawer,
-  DrawerContent,
   DrawerDescription,
   DrawerFooter,
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer'
+import PhoneDrawerContent from './PhoneDrawerContent'
 import { navigate } from '@/lib/navigate'
 import { cancelSubscription } from '@/lib/subscriptions'
 import { cn } from '@/lib/utils'
 import { SHEET_ACTION_CLASS, SHEET_CLASS } from './sheet'
 
-// Steps 1–2 are from the Figma screens. Steps 3–4 follow the same pattern
-// (the design lists their titles but only shows 1 and 2 expanded).
+// Hard coded steps
 const STEPS = [
   { title: 'Open Account Page', detail: 'In the app, click the profile icon to open the account page' },
   { title: 'Select Membership', detail: 'Click the “Membership” option underneath the Subscriptions section.' },
@@ -30,6 +29,10 @@ export default function GuidedCancelSheet({ sub, open, onOpenChange }) {
     if (open) setStep(0)
   }, [open])
 
+  function previous() {
+    setStep((s) => Math.max(0, s - 1))
+  }
+
   function next() {
     if (!last) return setStep(step + 1)
     onOpenChange(false)
@@ -41,7 +44,7 @@ export default function GuidedCancelSheet({ sub, open, onOpenChange }) {
 
   return (
     <Drawer open={open} onOpenChange={onOpenChange}>
-      <DrawerContent className={SHEET_CLASS}>
+      <PhoneDrawerContent className={SHEET_CLASS}>
         <DrawerHeader className="px-4 pt-6 text-center md:text-center">
           <DrawerTitle className="text-2xl leading-6 font-normal">
             Cancel Subscription: Guided Process
@@ -74,7 +77,7 @@ export default function GuidedCancelSheet({ sub, open, onOpenChange }) {
                   key={s.title}
                   aria-current={active ? 'step' : undefined}
                   className={cn(
-                    'min-h-16 rounded-[18px] border border-[#5e5e5e] bg-card p-3 text-xl',
+                    'min-h-16 rounded-[18px] border-2 border-primary bg-card p-3 text-xl',
                     !active && 'opacity-50',
                   )}
                 >
@@ -89,11 +92,18 @@ export default function GuidedCancelSheet({ sub, open, onOpenChange }) {
         </div>
 
         <DrawerFooter className="px-[19px] pb-5">
+          {step != 0 && <Button
+            variant="outline"
+            onClick={previous}
+            className={SHEET_ACTION_CLASS}
+          >
+            ← Go to previous step
+          </Button>}
           <Button onClick={next} className={SHEET_ACTION_CLASS}>
             {last ? 'I’ve canceled it' : 'Move on to next step →'}
           </Button>
         </DrawerFooter>
-      </DrawerContent>
+      </PhoneDrawerContent>
     </Drawer>
   )
 }

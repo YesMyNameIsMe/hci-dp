@@ -40,7 +40,7 @@
     --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* Prune palette, sampled from the Figma frames. Light only: the designs have no dark mode. */
+/* Prune palette*/
 :root {
     --background: #f4f3ee;
     --foreground: #1f2421;

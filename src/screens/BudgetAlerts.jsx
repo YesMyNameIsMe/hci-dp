@@ -6,11 +6,11 @@ import { Card } from '@/components/ui/card'
 import {
   Drawer,
   DrawerClose,
-  DrawerContent,
   DrawerDescription,
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer'
+import PhoneDrawerContent from '@/components/subscriptions/PhoneDrawerContent'
 import { Input } from '@/components/ui/input'
 import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group'
 import { CATEGORIES, THRESHOLDS, formatBudget, saveBudget, useBudgets } from '@/lib/budgets'
@@ -154,7 +154,7 @@ export default function BudgetAlerts() {
       </div>
 
       <Drawer open={pickerOpen} onOpenChange={setPickerOpen}>
-        <DrawerContent>
+        <PhoneDrawerContent>
           <DrawerHeader>
             <DrawerTitle>Choose a category</DrawerTitle>
             <DrawerDescription>Each category has its own monthly budget.</DrawerDescription>
@@ -187,7 +187,7 @@ export default function BudgetAlerts() {
               </li>
             ))}
           </ul>
-        </DrawerContent>
+        </PhoneDrawerContent>
       </Drawer>
     </div>
   )
